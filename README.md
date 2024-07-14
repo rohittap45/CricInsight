@@ -1,8 +1,8 @@
-## CricInsight
+# CricInsight
 
 CricInsight is a comprehensive cricket web application built using Django, Bootstrap, JavaScript, and machine learning. It provides users with live match updates, detailed match information fetched from the CricAPI, and a powerful IPL victory predictor.
 
-### Features
+## Features
 
 ****Live Match Updates****
 - Users can view live scores, match status, and other key details for ongoing cricket matches.
@@ -32,25 +32,53 @@ The CricInsight application is built using the following technologies:
 
 The key files and their descriptions are as follows:
 
-1. `templates/live_matches.html`: Displays the live match updates fetched from the CricAPI using Django templates and JavaScript[1].
-2. `templates/match_details.html`: Presents the detailed information about each match fetched from the CricAPI[1].
-3. `templates/predict.html`: Implements the IPL victory prediction model and the user input interface using Django forms and Bootstrap 5.
-4. `templates/registration/register.html` and `templates/registration/login.html`: Handle user registration and login functionality using Django's built-in authentication system.
-5. `cricinsight/views.py`: The main Django views file that handles the logic for each page and API requests.
-6. `cricinsight/models.py`: Defines the user model and any other necessary models for the application.
-7. `cricinsight/forms.py`: Contains the Django forms used for user input and registration.
-8. `cricinsight/predictor.py`: Contains the Python script that trains the Random Forest model and provides the prediction functionality.
+1. `backend/CAD/templates/live_matches.html`: Displays the live match updates fetched from the CricAPI using Django templates and JavaScript[1].
+2. `backend/CAD/templates/match_details.html`: Presents the detailed information about each match fetched from the CricAPI[1].
+3. `backend/CAD/templates/predict.html`: Implements the IPL victory prediction model and the user input interface using Django forms and Bootstrap 
+4. `backend/main/templates/registration/register.html` and `backend/main/templates/registration/login.html`: Handle user registration and login functionality using Django's built-in authentication system.
+5. `backend/CAD/views.py`: The main Django views file that handles the logic for each page and API requests.
+6. `backend/CAD/models.py`: Defines the user model and any other necessary models for the application.
+7. `backend/CAD/forms.py`: Contains the Django forms used for user input and registration.
+8. `backend/CAD/predictor.py`: Contains the Python script that trains the Random Forest model and provides the prediction functionality.
 
-### Getting Started
+## Installation and Setup
+#### 1. Prerequisites:
+* Python 3.x
+* Django 3.x
+#### 2. Clone the repository:
+```
+$ git clone https://github.com/rohittap45/CricInsight.git
 
-To run the CricInsight application locally, follow these steps:
+```
+#### 3. Create a virtual environment and activate it:
+```
+$ python -m venv env
+$ source env/bin/activate  # On Windows, use `env\Scripts\activate`
 
-1. Clone the repository: `git clone https://github.com/rohittap45/CricInsight.git`
-2. Create and activate a virtual environment: `python -m venv env` and `source env/bin/activate`
-3. Install the dependencies: `pip install -r requirements.txt`
-4. Apply the database migrations: `python manage.py migrate`
-5. Start the development server: `python manage.py runserver`
-6. Open the application in your browser: `http://localhost:8000`
+```
+#### 4. Install the required dependencies:
+```
+$ pip install -r requirements.txt
+
+```
+#### 5. Set up the database:
+```
+$ python manage.py migrate
+
+```
+#### 6. Create a superuser account:
+```
+$ python manage.py createsuperuser
+
+```
+#### 7. Start the development server:
+```
+$ python manage.py runserver
+
+```
+#### 8. Access the application:
+* Open your web browser and go to `http://localhost:8000/`.
+* You can now register, log in, and start posting tweets.
 
 ### Contributions
 
