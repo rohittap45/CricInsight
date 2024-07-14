@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block link %}
+<style>.card{
+    transition: 0.3s ease-in;
+
+}
+
+.card:hover{
+    box-shadow: #198754 0 0 10px 5px;
+    transform: scale(1.02);
+}
+
+</style>
+
+{% endblock %}
+{% block content %}
+<div class="container card card-body mt-5" style="width: 60%;padding=100px; ">
+    <h2 class="mb-4">Register</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-outline-success mt-4">Register</button>
+    </form>
+</div>
+{% endblock %}

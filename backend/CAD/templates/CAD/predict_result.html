@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% block link %}
+<style>.card{
+    transition: 0.3s ease-in;
+
+}
+
+.card:hover{
+    box-shadow: #198754 0 0 10px 5px;
+    transform: scale(1.02);
+}
+
+</style>
+
+{% endblock %}
+{% block content %}
+<div class="card card-body mt-6" style="margin:4% 28%; width:35% ;padding:35px 40px">
+<h2 class="mb-3">Prediction Results</h2>
+<h6 class="mb-4">{{ batting_team }} vs {{ bowling_team }}</h6>
+<p class="mb-2">{{ batting_team }} Win Probability: {{ team1_win_probability }}%</p>
+<p>{{ bowling_team }} Win Probability: {{ team2_win_probability }}%</p>
+</div>
+{% endblock %}

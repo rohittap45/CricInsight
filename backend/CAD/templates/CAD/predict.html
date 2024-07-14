@@ -1,0 +1,72 @@
+{% extends 'layout.html' %}
+
+{% block link %}
+<style>.card{
+    transition: 0.3s ease-in;
+
+}
+
+.card:hover{
+    box-shadow: #198754 0 0 10px 5px;
+    transform: scale(1.02);
+}
+
+</style>
+
+{% endblock %}
+
+{% block content %}
+<div class="" style="width: 40%;display:flex; flex-direction:row; justify-content: center; margin:4% 27%">
+    <div class="contain card card-body" style=" padding:40px ">
+      <h2 style="height:5px;">IPL Victory Predictor</h2>
+
+
+<form method="post" class="mt-5">
+    {% csrf_token %}
+    <label for="batting_team" class="mb-3">Batting Team:</label>
+    <select name="batting_team"class="form-control" id="batting_team" default:"Select">
+        <option selected>Select</option>
+        {% for team in teams %}
+        <option value="{{ team }}">{{ team }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <label for="bowling_team"class="mb-3 ">Bowling Team:</label>
+    <select name="bowling_team"class="form-control" id="bowling_team" default:"Select">
+        <option selected>Select</option>
+        {% for team in teams %}
+        <option value="{{ team }}">{{ team }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <label for="city"class="mb-3">City:</label>
+    <select name="city" id="city"class="form-control">
+        <option selected>Select</option>
+        {% for city in cities %}
+        <option value="{{ city }}">{{ city }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <label for="runs_left"class="mb-3">Runs Left:</label>
+    <input type="number" name="runs_left" id="runs_left"class="form-control" required>
+    <br>
+    <label for="balls_left"class="mb-3">Balls Left:</label>
+    <input type="number" name="balls_left" id="balls_left"class="form-control" required>
+    <br>
+    <label for="wickets_remaining"class="mb-3">Wickets Remaining:</label>
+    <select name="wickets_remaining" id="wickets_remaining"class="form-control">
+        <option selected>Select</option>
+        {% for wicket in wickets %}
+        <option value="{{ wicket }}">{{ wicket }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <label for="total_run_x"class="mb-3 ">Target:</label>
+    <input type="number" name="total_run_x" id="total_run_x"class="form-control" required>
+    <br>
+
+    <button class="btn btn-outline-success mt-4" type="submit">Predict</button>
+</form>
+</div>
+</div>
+{% endblock %}

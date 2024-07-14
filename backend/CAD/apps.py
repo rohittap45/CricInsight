@@ -1,0 +1,8 @@
+from django.apps import AppConfig
+
+class CadConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'CAD'
+
+    def ready(self):
+        import CAD.signals

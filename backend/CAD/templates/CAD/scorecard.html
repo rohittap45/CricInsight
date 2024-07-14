@@ -1,0 +1,105 @@
+<!-- templates/match_details.html -->
+
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<h2 style="text-align:center;">Match Details</h2>
+<div class="container">
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">{{ match.name }}</h5>
+            <p class="card-text">
+                <strong>Match Type:</strong> {{ match.matchType }}<br>
+                <strong>Status:</strong> {{ match.status }}<br>
+                <strong>Venue:</strong> {{ match.venue }}<br>
+                <strong>Date:</strong> {{ match.date }}<br>
+                <strong>Time (GMT):</strong> {{ match.dateTimeGMT }}<br>
+                <strong>Teams:</strong> {{ match.teams|join:" vs " }}<br>
+                <strong>Toss Winner:</strong> {{ match.tossWinner }}<br>
+                <strong>Toss Choice:</strong> {{ match.tossChoice }}<br>
+            </p>
+            <div class="row">
+                {% for team in match.teamInfo %}
+                <div class="col-md-6 text-center">
+                    <img src="{{ team.img }}" alt="{{ team.name }}" class="img-fluid" style="max-height: 100px;">
+                    <p>{{ team.name }} ({{ team.shortname }})</p>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="mt-3">
+                <h6>Score:</h6>
+                {% for score in match.score %}
+                <p>{{ score.inning }}: {{ score.r }} runs, {{ score.w }} wickets, {{ score.o }} overs</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="card mt-3">
+        <div class="card-body mb-4">
+            <h5 class="card-title">Scorecard</h5>
+            <h6>Batting</h6>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Batsman</th>
+                        <th>Dismissal</th>
+                        <th>Bowler</th>
+                        <th>Runs</th>
+                        <th>Balls</th>
+                        <th>4s</th>
+                        <th>6s</th>
+                        <th>SR</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for batsman in match.scorecard.0.batting %}
+                    <tr>
+                        <td>{{ batsman.batsman.name }}</td>
+                        <td>{{ batsman.dismissal }}</td>
+                        <td>{{ batsman.bowler.name }}</td>
+                        <td>{{ batsman.r }}</td>
+                        <td>{{ batsman.b }}</td>
+                        <td>{{ batsman.4s }}</td>
+                        <td>{{ batsman.6s }}</td>
+                        <td>{{ batsman.sr }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <h6>Bowling</h6>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Bowler</th>
+                        <th>Overs</th>
+                        <th>Maidens</th>
+                        <th>Runs</th>
+                        <th>Wickets</th>
+                        <th>No Balls</th>
+                        <th>Wides</th>
+                        <th>Economy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for bowler in match.scorecard.0.bowling %}
+                    <tr>
+                        <td>{{ bowler.bowler.name }}</td>
+                        <td>{{ bowler.o }}</td>
+                        <td>{{ bowler.m }}</td>
+                        <td>{{ bowler.r }}</td>
+                        <td>{{ bowler.w }}</td>
+                        <td>{{ bowler.nb }}</td>
+                        <td>{{ bowler.wd }}</td>
+                        <td>{{ bowler.eco }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+         
+      <a class="icon-link icon-link-hover" style="--bs-link-hover-color-rgb: 25, 135, 84; color: #198754; text-decoration: none !important;" href="{% url 'CAD:live_matches' %}">Back to Live Matches</a>
+      
+        </div>
+    </div>
+</div>
+{% endblock %}

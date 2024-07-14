@@ -1,0 +1,14 @@
+.card{
+    transition: 0.3s ease-in;
+
+}
+
+.card:hover{
+    box-shadow: #198754 0 0 20px 15px;
+    transform: scale(1.1);
+}
+
+h2{
+    text-align: center;
+    color: #198754;
+}

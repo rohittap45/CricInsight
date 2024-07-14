@@ -1,0 +1,60 @@
+
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block link %}
+<style>.card{
+    transition: 0.3s ease-in;
+
+}
+
+.card:hover{
+    box-shadow: #198754 0 0 10px 5px;
+    transform: scale(1.02);
+}
+
+</style>
+
+{% endblock %}
+
+{% block content %}
+<h2 class="h2" style="text-align:center">Live Matches</h2>
+<div class="container mt-3" style="display: flex; flex-direction: row;  flex-wrap: wrap; width:100rem ">
+    {% for match in matches %}
+    <div class="card mb-3 mx-3" style="width: 18rem; font-size: clamp(0.5rem, 0.8vw, 1rem); ">
+        <div class="card-body">
+            <div class="" style="height:200px">
+            <h5 class="card-title"  style="height=75px;">{{ match.name }}</h5>
+            <p class="card-text">
+                <strong>Match Type:</strong> {{ match.matchType }}<br>
+                <strong>Status:</strong> {{ match.status }}<br>
+                {% comment %} <strong>Venue:</strong> {{ match.venue }}<br>
+                <strong>Date:</strong> {{ match.date }}<br>
+                <strong>Time (GMT):</strong> {{ match.dateTimeGMT }}<br>
+                <strong>Teams:</strong> {{ match.teams|join:" vs " }}<br> {% endcomment %}
+            </p>
+            <div class="row">
+                {% for team in match.teamInfo %}
+                <div class="col-md-6 text-center">
+                    <img src="{{ team.img }}" alt="{{ team.name }}" class="img-fluid" style="max-height: 20px;">
+                    <p>{{ team.name }}</p>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+
+
+            {% comment %} <div class="mt-3">
+                <h6>Score:</h6>
+                {% for score in match.score %}
+                <p>{{ score.inning }}: {{ score.r }} runs, {{ score.w }} wickets, {{ score.o }} overs</p>
+                {% endfor %}
+            </div> {% endcomment %}
+
+            <a href="{% url 'CAD:match_details' match.id %}" class="btn btn-outline-success"> Details</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
